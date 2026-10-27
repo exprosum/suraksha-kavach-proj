@@ -1,0 +1,6 @@
+{
+  "name": "Suraksha Kavach - AI Disaster Risk & Relocation Platform",
+  "description": "Intelligent Identification of Hazard-Based Red Zones, Carrying Capacity Assessment, and Immediate Relocation Planning for Vulnerable Habitations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

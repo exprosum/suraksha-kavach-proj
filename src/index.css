@@ -1,0 +1,451 @@
+@import "tailwindcss";
+
+/* ─── Design System Custom Properties ─────────────────────────────────── */
+:root {
+  --bg-base:     #0B1F17;
+  --bg-card:     #14342A;
+  --bg-elevated: #1A4035;
+  --accent-sage: #7A9A6B;
+  --text-cream:  #E8D5B0;
+  --text-white:  #F5F5F0;
+  --text-muted:  #A9B8AE;
+  --hazard-red:  #E5484D;
+  --hazard-amber:#F5A623;
+  --hazard-blue: #3B9EED;
+  --hazard-green:#4CAF50;
+}
+
+/* ─── Base Reset ───────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-base);
+  color: var(--text-white);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* ─── Motion: Respect prefers-reduced-motion ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: #2D5A42; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-sage); }
+
+/* ─── Typography Utilities ──────────────────────────────────────────── */
+.sk-heading-xl {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--text-cream);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.sk-heading-lg {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--text-cream);
+  line-height: 1.2;
+}
+
+.sk-heading-md {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.sk-body {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.sk-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent-sage);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ─── Cards ─────────────────────────────────────────────────────────── */
+.sk-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(122, 154, 107, 0.18);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.sk-card:hover {
+  border-color: rgba(122, 154, 107, 0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+.sk-card-elevated {
+  background: var(--bg-elevated);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────── */
+.sk-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-sage);
+  color: var(--bg-base);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.sk-btn-primary:hover {
+  background: #8BAF7C;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(122,154,107,0.4);
+}
+
+.sk-btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--text-cream);
+  color: var(--bg-base);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.sk-btn-cta:hover {
+  background: #f0dfc0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(232,213,176,0.35);
+}
+
+.sk-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(122,154,107,0.3);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.sk-btn-ghost:hover {
+  color: var(--text-cream);
+  border-color: var(--accent-sage);
+  background: rgba(122,154,107,0.1);
+}
+
+.sk-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--hazard-red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.sk-btn-danger:hover {
+  background: #f05a5f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(229,72,77,0.5);
+}
+
+/* ─── Risk Badges ────────────────────────────────────────────────────── */
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+}
+
+.risk-badge-normal  { background: rgba(76,175,80,0.15);  color: #4CAF50; border: 1px solid rgba(76,175,80,0.4); }
+.risk-badge-watch   { background: rgba(59,158,237,0.15); color: #3B9EED; border: 1px solid rgba(59,158,237,0.4); }
+.risk-badge-warning { background: rgba(245,166,35,0.15); color: #F5A623; border: 1px solid rgba(245,166,35,0.4); }
+.risk-badge-red     { background: rgba(229,72,77,0.18);  color: #E5484D; border: 1px solid rgba(229,72,77,0.5); animation: pulse-red 2s infinite; }
+
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(229,72,77,0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(229,72,77,0); }
+}
+
+/* ─── Trust / Source Label ───────────────────────────────────────────── */
+.sk-trust-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  color: var(--accent-sage);
+  background: rgba(122,154,107,0.1);
+  border: 1px solid rgba(122,154,107,0.25);
+  border-radius: 0.375rem;
+  padding: 0.1875rem 0.625rem;
+  font-weight: 500;
+}
+
+/* ─── Override Note ──────────────────────────────────────────────────── */
+.sk-override-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  background: rgba(232,213,176,0.07);
+  border: 1px solid rgba(232,213,176,0.2);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-cream);
+  opacity: 0.9;
+}
+
+/* ─── Section Divider ────────────────────────────────────────────────── */
+.sk-section {
+  padding: 5rem 0;
+}
+
+.sk-section-narrow {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* ─── Glow Effects ───────────────────────────────────────────────────── */
+.sk-glow-sage {
+  box-shadow: 0 0 40px rgba(122,154,107,0.15);
+}
+
+.sk-glow-red {
+  box-shadow: 0 0 40px rgba(229,72,77,0.25);
+}
+
+/* ─── Animated Hazard Map Hero ───────────────────────────────────────── */
+.hero-zone-pulse {
+  animation: hero-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hero-pulse {
+  0%, 100% { opacity: 0.7; r: 6px; }
+  50%       { opacity: 1;   r: 9px; }
+}
+
+.hero-zone-outer {
+  animation: hero-outer 2.5s ease-in-out infinite;
+}
+
+@keyframes hero-outer {
+  0%, 100% { opacity: 0.3; r: 16px; }
+  50%       { opacity: 0;   r: 26px; }
+}
+
+/* ─── Scroll Fade-In (Motion fallback) ───────────────────────────────── */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Leaflet Overrides ──────────────────────────────────────────────── */
+.gis-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-container {
+  background-color: #071510 !important;
+  font-family: 'Inter', inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #14342A !important;
+  color: var(--text-white) !important;
+  border: 1px solid rgba(122,154,107,0.3) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
+  padding: 0.25rem !important;
+}
+
+.leaflet-popup-tip {
+  background-color: #14342A !important;
+  border: 1px solid rgba(122,154,107,0.3) !important;
+}
+
+.leaflet-popup-close-button {
+  color: var(--text-muted) !important;
+  padding: 8px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: var(--text-white) !important;
+}
+
+.custom-gis-tooltip {
+  background-color: rgba(11,31,23,0.96) !important;
+  border: 1px solid rgba(122,154,107,0.4) !important;
+  color: var(--text-white) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.5) !important;
+  padding: 4px 8px !important;
+}
+
+.custom-gis-tooltip-danger {
+  background-color: rgba(60,10,12,0.97) !important;
+  border: 1px solid rgba(229,72,77,0.6) !important;
+  color: #fecaca !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.5) !important;
+  padding: 4px 8px !important;
+}
+
+.custom-gis-tooltip-safe {
+  background-color: rgba(11,31,23,0.97) !important;
+  border: 1px solid rgba(122,154,107,0.6) !important;
+  color: #a7f3d0 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.5) !important;
+  padding: 4px 8px !important;
+}
+
+/* ─── Leaflet controls matching our dark theme ─────────────────────── */
+.leaflet-control-zoom a {
+  background-color: #14342A !important;
+  color: var(--text-cream) !important;
+  border-color: rgba(122,154,107,0.3) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #1A4035 !important;
+}
+
+/* ─── Sidebar Dashboard Layout ───────────────────────────────────────── */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto auto;
+  }
+}
+
+/* ─── Utility: Hidden until viewport ─────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Step Number circles ────────────────────────────────────────────── */
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(122,154,107,0.15);
+  border: 2px solid rgba(122,154,107,0.4);
+  color: var(--accent-sage);
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* ─── Stats Row ─────────────────────────────────────────────────────── */
+.sk-stat {
+  text-align: center;
+}
+
+.sk-stat-value {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-cream);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sk-stat-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ─── Demo data badge ────────────────────────────────────────────────── */
+.demo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: #F5A623;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.3);
+  border-radius: 0.25rem;
+  padding: 0.0625rem 0.375rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
